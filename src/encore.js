@@ -75,17 +75,18 @@ function getEncore(
     })
     .disableSingleRuntimeChunk()
 
-  //   if (filesToCopy === null) {
-  //     filesToCopy = [
-  //       {
-  //         from: './favicons',
-  //         to: '[name].[ext]',
-  //       },
-  //     ]
-  //   }
-  //filesToCopy.forEach(function (toCopy) {
-  //Encore.copyFiles(toCopy);
-  //})
+  if (filesToCopy === null) {
+    filesToCopy = [
+      {
+        from: './favicons',
+        to: '[name].[ext]',
+      },
+    ]
+  }
+
+  filesToCopy.forEach(function (toCopy) {
+    Encore.copyFiles(toCopy)
+  })
 
   if (manifestKeyPrefix !== null) Encore.setManifestKeyPrefix(manifestKeyPrefix)
 

@@ -19,7 +19,7 @@
     "autoprefixer": "^10.4",
     "babel-preset-stage-2": "^6.24.1",
     "codemirror": "^6.0",
-    "core-js": "^3.35",
+    "core-js": "^3.36",
     "easymde": "^2.18",
     "file-loader": "^6.0",
     "fslightbox": "^3.2.2",
