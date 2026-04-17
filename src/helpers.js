@@ -1,3 +1,5 @@
+import 'core-js/stable'
+//import 'regenerator-runtime/runtime'
 /**
  * List of all functions
  *
@@ -104,8 +106,6 @@ export function liveBlock(liveBlockAttribute = 'live', liveFormSelector = '.live
 
   // Listen button src-data-live / data-src-live
   document.querySelectorAll('[data-src-' + liveBlockAttribute + ']').forEach((item) => {
-    if (item.dataset.liveButtonBound) return
-    item.dataset.liveButtonBound = '1'
     item.addEventListener('click', (event) => {
       if (item.tagName == 'BUTTON') {
         item.innerHTML = spinner
@@ -115,13 +115,10 @@ export function liveBlock(liveBlockAttribute = 'live', liveFormSelector = '.live
     })
   })
 
-  // Listen live-form (guard against duplicate listeners on re-init or nesting)
+  // Listen live-form
   document.querySelectorAll(liveFormSelector).forEach((item) => {
-    if (item.dataset.liveFormBound) return
-    item.dataset.liveFormBound = '1'
-    var form = item.querySelector('form')
-    if (form !== null && form.closest(liveFormSelector) === item) {
-      form.addEventListener('submit', (e) => {
+    if (item.querySelector('form') !== null) {
+      item.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault()
         sendForm(e, item)
       })
