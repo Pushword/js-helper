@@ -14,7 +14,9 @@ Front-end **JavaScript helpers** for Pushword themes — live forms, lightbox, c
 
 - **Live forms / live blocks** (`liveForm`) for [Conversation](https://github.com/Pushword/conversation).
 - **Client-side search** (`PushwordSimpleSearch`) and **lightbox** (GLightbox).
-- **Scroll enhancers**, show-more, clickable blocks, unpublished-link helpers.
+- **Scroll enhancers**, show-more, unpublished-link helpers. Clickable blocks are
+  pure CSS: `.clickable` in `src/clickable.css` (imported by `app.css`, importable
+  on its own) stretches the inner link over the box.
 - Ships as the npm package **`@pushword/js-helper`**.
 
 ## Installation
