@@ -225,9 +225,10 @@ const ShowMore = {
    */
   openTextFragment(directive) {
     for (const match of directive.matchAll(/(?:^|&)text=([^&]*)/g)) {
-      const parts = match[1].split(',')
+      let parts = match[1].split(',')
       // Syntax: text=[prefix-,]start[,end][,-suffix] — only start is searched.
-      let start = parts.length > 1 && parts[0].endsWith('-') ? parts[1] : parts[0]
+      if (parts.length > 1 && parts[0].endsWith('-')) parts = parts.slice(1)
+      let start = parts[0]
       try {
         start = decodeURIComponent(start)
       } catch (e) {
@@ -264,7 +265,7 @@ const ShowMore = {
   // recover it from there so the block holding the native highlight opens.
   _openNavigationTextFragment() {
     if (location.hash.includes(':~:')) return // scrollToHash already handled it
-    const url = performance.getEntriesByType('navigation')[0]?.name ?? ''
+    const url = performance.getEntriesByType?.('navigation')[0]?.name ?? ''
     const directiveStart = url.lastIndexOf(':~:')
     if (directiveStart !== -1) {
       this.openTextFragment(url.slice(directiveStart + 3))
